@@ -39,6 +39,7 @@ school[:founded_in]=2013
 school[:students].push(:name => "Bob", :grade => "Z-")
 school[:students].delete(:name => "Billy", :grade => "F")
 school[:students].each {|student| student[:semester] = "Summer"}
+# the method "at" works, but the typical way to do this would be to use the [] method
 school[:instructors].at(1)[:subject] ="being almost better than Blake"
 school[:students].at(1)[:grade] ="F"
 school[:students].each {|student| student[:name] if student[:grade]=="B"}
@@ -62,15 +63,19 @@ end
 puts "#################################################"
 
 #4. Methods
+# try doing this without explicity using the return keywork
+
 def return_student_grade(hash,name)
   hash[:students].each{|person| return person[:grade] if person[:name]==name}
 end
 
+# try doing this without explicity using the return keywork
 def update_teacher_subject (hash, instructor_name, newsubject)
   hash[:instructors].each {|person| return person[:subject]=newsubject if person[:name] == instructor_name}
 end
 update_teacher_subject(school,"Blake","being terrible")
 
+# hash is a bad name for a variable, name things based on what they represent rather than the data structure they are in
 def add_newstudent (hash, studentname, grade, semester)
   hash[:students].push(:name=> studentname, :grade=>grade, :semester=>semester)
 end
@@ -88,6 +93,7 @@ puts school
 
 #5.Object Orientation 
 #definitely not perfect
+# let's talk in person about this
 class School
   attr_accessor :name, :location, :instructors, :students
   attr_reader :ranking
